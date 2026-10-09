@@ -11,6 +11,9 @@ services:
   server:
     build:
       context: .
+      args:
+        APP_VERSION: ${IMAGE_TAG:-dev}
+    image: demo-app:${IMAGE_TAG:-dev}
     ports:
       - 8080:8080
 

@@ -47,5 +47,8 @@ COPY . .
 # Expose the port that the application listens on.
 EXPOSE 8080
 
+ARG APP_VERSION=dev
+ENV APP_VERSION=${APP_VERSION}
+
 # Run the application.
 CMD gunicorn 'app:app' --bind=0.0.0.0:8080
