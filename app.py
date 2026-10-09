@@ -7,7 +7,7 @@ VERSION = os.getenv("APP_VERSION", "dev")
 
 @app.route("/")
 def index():
-    return jsonify(message="Hello from the demo app", version=VERSION)
+    return jsonify(message="Hello at the demo app", version=VERSION)
 
 
 @app.route("/health")
