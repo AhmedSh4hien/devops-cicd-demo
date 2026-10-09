@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+        triggers {
+        pollSCM('H/2 * * * *')
+    }
+
     environment {
         IMAGE_REPO = 'shahien4/devops-cicd-demo'
         IMAGE_TAG  = "1.0.${env.BUILD_NUMBER}"
