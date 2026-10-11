@@ -6,7 +6,7 @@ automatically by a Jenkins pipeline.
 ## Architecture
 
 ```
-GitHub push -> Jenkins (SCM polling) -> docker build -> Docker Hub
+GitHub push -> Jenkins (SCM polling) -> docker build -> Docker Hub -> deploy over SSH to AWS EC2 (Terraform)
 ```
 
 ## Tech stack
@@ -65,3 +65,9 @@ Jenkins is available at http://localhost:8081. You then need to:
 
 ### Versioned images on Docker Hub
 ![Docker Hub tags](docs/dockerhub-tags.png)
+
+### Full pipeline with deploy stage
+![Jenkins pipeline with deploy](docs/jenkins-deploy.png)
+
+### Live app on AWS EC2
+![Live app](docs/live-app.png)
