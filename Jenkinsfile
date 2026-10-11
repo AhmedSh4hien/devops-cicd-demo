@@ -31,6 +31,21 @@ pipeline {
                 }
             }
         }
+
+                stage('Deploy') {
+            steps {
+                withCredentials([string(credentialsId: 'ec2-host', variable: 'EC2_HOST')]) {
+                    sshagent(credentials: ['ec2-ssh-key']) {
+                        sh '''
+                            ssh -o StrictHostKeyChecking=accept-new ec2-user@$EC2_HOST "mkdir -p ~/app"
+                            scp -o StrictHostKeyChecking=accept-new deploy/compose.yaml ec2-user@$EC2_HOST:~/app/compose.yaml
+                            ssh ec2-user@$EC2_HOST "cd ~/app && IMAGE_TAG=$IMAGE_TAG docker compose pull && IMAGE_TAG=$IMAGE_TAG docker compose up -d"
+                        '''
+                    }
+                }
+            }
+        }
+
     }
 
     post {
